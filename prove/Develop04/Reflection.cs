@@ -1,7 +1,7 @@
 public class Reflection : Activity
 {
 
-    List<string> Prompts = new List<string>
+    private List<string> Prompts = new List<string>
         {
             "Think of a time when you stood up for someone else.",
             "Think of a time when you did something really difficult.",
@@ -9,7 +9,7 @@ public class Reflection : Activity
             "Think of a time when you did something truly selfless."
         };
 
-    List<string> Reflection_prompt = new List<string>
+    private List<string> Reflection_prompt = new List<string>
         {
         "Why was this experience meaningful to you?",
         "Have you ever done anything like this before?",
@@ -23,8 +23,8 @@ public class Reflection : Activity
     };
 
 
-        string welcome = "Reflection Activity";
-        string description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+        private string welcome = "Reflection Activity";
+        private string description = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
 
     public void Full_Reflection() // Main Function
     {

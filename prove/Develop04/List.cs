@@ -3,10 +3,10 @@ using System.Security.Cryptography.X509Certificates;
 public class List : Activity
 
 {
-    string welcome = "List Activity";
-    string description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+    private string welcome = "List Activity";
+    private string description = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
 
-    List<string> suggestions = new List<string>
+    private List<string> suggestions = new List<string>
     {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
@@ -15,7 +15,7 @@ public class List : Activity
         "Who are some of your personal heroes?"
     };
 
-    int x = 0;
+    private int x = 0;
 
     public void Full_List()
     {
