@@ -1,0 +1,4 @@
+Simple|fd,bgs,432,False
+Eternal|gres,muyt,7654,False
+Checklist|nsgtsr,nuyrjyf,76,False,7654,System.Func`1[System.Int32],System.Func`1[System.Int32]
+Simple|bgts,nhf,9876,True
