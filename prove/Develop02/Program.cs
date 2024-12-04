@@ -2,105 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class Save_Loader
-{
-    // Save journal entries to a file
-    public void SaveEntries(string filename, List<JournalEntry> entries)
-    {
-        using (StreamWriter outputFile = new StreamWriter(filename))
-        {
-            foreach (JournalEntry entry in entries)
-            {
-                outputFile.WriteLine(entry.Prompt);
-                outputFile.WriteLine(entry.Response);
-                outputFile.WriteLine(entry.EntryDateTime);
-            }
-        }
-        Console.WriteLine($"Entries saved to file: {filename}");
-    }
 
-    // Load journal entries from a file
-    public List<JournalEntry> LoadEntries(string filename)
-    {
-        List<JournalEntry> entries = new List<JournalEntry>();
-
-        if (File.Exists(filename))
-        {
-            using (StreamReader inputFile = new StreamReader(filename))
-            {
-                while (!inputFile.EndOfStream)
-                {
-                    string prompt = inputFile.ReadLine();
-                    string response = inputFile.ReadLine();
-                    DateTime entryDateTime = DateTime.Parse(inputFile.ReadLine());
-                    entries.Add(new JournalEntry(prompt, response, entryDateTime));
-                }
-            }
-            Console.WriteLine($"Entries loaded from file: {filename}");
-        }
-        else
-        {
-            Console.WriteLine("File not found.");
-        }
-
-        return entries;
-    }
-}
-
-public class prompt_generator
-{
-    // Generate and return a random prompt
-    public string pro_gen()
-    {
-        List<string> prompt = new List<string>{
-            "What is one thing you are grateful for?",
-            "Who made you smile today?",
-            "How have you seen the hand of the Lord today?",
-            "What surprised you today?",
-            "What was the hardest thing you did today?",
-            "What is something you learned today?"
-        };
-
-        Random random = new Random();
-        return prompt[random.Next(prompt.Count)];
-    }
-
-    // Record and return user's response to the prompt
-    public string recorder(string prompt)
-    {
-        Console.WriteLine($"{prompt}\n");
-        return Console.ReadLine();
-    }
-}
-
-public class JournalEntry
-{
-    public string Prompt { get; set; }
-    public string Response { get; set; }
-    public DateTime EntryDateTime { get; set; }
-
-    // Constructor for new entries
-    public JournalEntry(string prompt, string response)
-    {
-        Prompt = prompt;
-        Response = response;
-        EntryDateTime = DateTime.Now;
-    }
-
-    // Constructor for loading entries from file
-    public JournalEntry(string prompt, string response, DateTime entryDateTime)
-    {
-        Prompt = prompt;
-        Response = response;
-        EntryDateTime = entryDateTime;
-    }
-
-    // Override ToString to display entries neatly
-    public override string ToString()
-    {
-        return $"Prompt: {Prompt}\nResponse: {Response}\nDate: {EntryDateTime}\n";
-    }
-}
 
 class Program
 {
@@ -126,30 +28,26 @@ class Program
                 continue;
             }
 
-            if (i == 1)
+            if (i == 1) // Prompt generator and recorder
             {
+                JournalEntry entry = new JournalEntry();
                 prompt_generator question = new prompt_generator();
-                string suggestion = question.pro_gen();
-                string response = question.recorder(suggestion);
+                
+                entry.prompt = question.RandomGen();
+                entry.response = Console.ReadLine();
+                entry.entryDateTime = DateTime.Now;
 
-                JournalEntry entry = new JournalEntry(suggestion, response);
                 entries_array.Add(entry);
-
-                Console.WriteLine("Entry saved!\n");
+                Console.WriteLine("Entry recorded!\n");
             }
             else if (i == 2)
+            //Display function
             {
-                if (entries_array.Count == 0)
-                {
-                    Console.WriteLine("No entries yet.");
-                }
-                else
-                {
                     foreach (var entry in entries_array)
                     {
-                        Console.WriteLine(entry);
+                        Console.WriteLine($"Prompt: {entry.prompt} Response: {entry.response}");
+                        Console.WriteLine($"Time: {entry.entryDateTime}");
                     }
-                }
             }
             else if (i == 3)
             {
