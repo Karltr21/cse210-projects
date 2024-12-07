@@ -4,6 +4,12 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Foundation2 World!");
+        List <string> jake = new List <string> 
+        {
+            "Jake",
+            "Jake"
+        }
+        Console.WriteLine(jake);
+        
     }
 }
