@@ -53,7 +53,7 @@ class Program
         for (int i = 0; i<= 3; i++)
         {
             Video movie = new Video();
-            movie.Getcomments(names, comment_options);
+            movie.List_comments(names, comment_options);
             movie.Get_Video_info(names, title, length);
             videos.Add(movie);
         }
